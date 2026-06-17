@@ -12,13 +12,33 @@ public class LinkedList {
         }
     }
 
-    // Insert at begin end position
+    // Insert at begin position
     public void insertAtBegin(int data) {
         Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
     }
 
+    // Insert at position
+    public void insertAtPosition(int data, int position) {
+        Node newNode = new Node(data);
+        if (position == 0) {
+            insertAtBegin(data);
+            return;
+        }
+        Node temphead = head;
+        for (int i = 0; i < position - 1 && temphead != null; i++) {
+            temphead = temphead.next;
+        }
+        if (temphead == null) {
+            System.out.println("Invalid position");
+            return;
+        }
+        newNode.next = temphead.next;
+        temphead.next = newNode;
+    }
+
+    // Insert at end position
     public void insertAtEnd(int data) {
         Node newNode = new Node(data);
         if (head == null) {
@@ -32,7 +52,7 @@ public class LinkedList {
         temphead.next = newNode;
     }
 
-    // Delete at begin end position
+    // Delete at begin position
     public void deleteAtBegin() {
         if (head == null) {
             System.out.println("List is empty");
@@ -45,6 +65,28 @@ public class LinkedList {
         head = head.next;
     }
 
+    // Delete at position
+    public void deleteAtPosition(int position) {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        if (position == 0) {
+            deleteAtBegin();
+            return;
+        }
+        Node temphead = head;
+        for (int i = 0; i < position - 1 && temphead != null; i++) {
+            temphead = temphead.next;
+        }
+        if (temphead == null || temphead.next == null) {
+            System.out.println("Invalid position");
+            return;
+        }
+        temphead.next = temphead.next.next;
+    }
+
+    // Delete at end position
     public void deleteAtEnd() {
         if (head == null) {
             System.out.println("List is empty");
@@ -75,9 +117,10 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList ll = new LinkedList();
         ll.insertAtBegin(100);
-        ll.insertAtEnd(200);
         ll.insertAtEnd(300);
-        ll.deleteAtBegin();
+        ll.insertAtEnd(400);
+        ll.insertAtPosition(200, 1);
+        ll.deleteAtPosition(1);
         ll.printList();
     }
 
