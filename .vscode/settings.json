@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["temphead"]
+  "cSpell.words": ["temphead"],
+  "java.debug.settings.onBuildFailureProceed": true
 }

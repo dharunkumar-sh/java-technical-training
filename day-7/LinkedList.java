@@ -103,6 +103,20 @@ public class LinkedList {
         temphead.next = null;
     }
 
+    // Reverse the linked list
+    public void reverse() {
+        Node curr = head;
+        Node prev = null;
+        Node next = null;
+        while(curr != null) {
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        head = prev;
+    }
+
     // Print the linked list
     public void printList() {
         Node temphead = head;
@@ -120,7 +134,7 @@ public class LinkedList {
         ll.insertAtEnd(300);
         ll.insertAtEnd(400);
         ll.insertAtPosition(200, 1);
-        ll.deleteAtPosition(1);
+        ll.reverse();
         ll.printList();
     }
 
